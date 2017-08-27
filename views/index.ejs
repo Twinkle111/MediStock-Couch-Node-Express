@@ -1,0 +1,29 @@
+<h1> CREATE <h1>
+<form method = "post" action = "data/add">
+  <input type = "text" name = "mediName" placeholder = "Medicine Name">
+  <input type = "text" name = "price" placeholder = "Enter Price">
+  <input type = "submit" value = "Submit">
+</form>
+
+<h1>READ DELETE UPDATE</h1>
+<ul>
+    <% data.forEach(function(data) { %>
+        <li>
+          <h4><%= data.value.mediName%></h4>
+          <ul>
+            <li><%= data.value.rate%></li>
+            <form method = "post" action = "/data/delete/<%= data.key%>">
+              <input type = "hidden" value = "<%= data.value.rev%>" name = "rev">
+              <input type = "submit" value = "X">
+            </form>
+            <form method = "post" action = "/data/update/<%= data.key%>">
+              <input type = "hidden" value = "<%= data.value.rev%>" name = "rev">
+              <input type = "text" name = "mediName" placeholder = "Medicine Name">
+              <input type = "text" name = "price" placeholder = "Enter Price">
+              <input type = "submit" value = "Submit">
+            </form>
+            <hr/>
+          </ul>
+        </li>
+    <% }); %>
+</ul>
